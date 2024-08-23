@@ -18,5 +18,14 @@ class accesoBD{
     conexion::cerrarConexion();
     return $pArray;
   }
+  public static function subirDatos($valor, $tipo){
+      $pArray = new stdClass();
+      $fecha = date('Y-m-d H:i:s');
+      $sql = "INSERT INTO datos (tipo, valor, fecha) VALUES ('{$tipo}','{$valor}','{$fecha}')";
+      if(conexion::ejecutarSQL($sql)) $pArray->code = '200';
+      else $pArray->code = '300';
+      conexion::cerrarConexion();
+      return $pArray;
+  }
 }
 ?>
